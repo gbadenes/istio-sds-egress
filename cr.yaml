@@ -31,3 +31,12 @@ rules:
   - patch
   - update
   - create
+- apiGroups:
+  - ""
+  resources:
+  - pods/log
+  verbs:
+  - get
+  - list
+  - patch
+  - update
