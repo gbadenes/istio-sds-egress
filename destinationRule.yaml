@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: originate-mtls-for-nginx
+  namespace: istio-system
+spec:
+  host: my-nginx.mesh-external.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
+    portLevelSettings:
+    - port:
+        number: 443
+      tls:
+        mode: MUTUAL
+        credentialName: client-credential # this must match the secret created earlier to hold client certs
+        sni: my-nginx.mesh-external.svc.cluster.local
+        # subjectAltNames: # can be enabled if the certificate was generated with SAN as specified in previous section
+        # - my-nginx.mesh-external.svc.cluster.local
