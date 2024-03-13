@@ -21,3 +21,12 @@ rules:
   - list
   - patch
   - update
+- apiGroups:
+  - ""
+  resources:
+  - pods/portforward
+  verbs:
+  - get
+  - list
+  - patch
+  - update
